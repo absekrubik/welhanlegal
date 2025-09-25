@@ -77,56 +77,38 @@ function initServiceCardAnimations() {
             this.style.boxShadow = '0 20px 40px rgba(70, 44, 138, 0.3)';
             
             // Background gradient animation
-            const beforeElement = this.querySelector('::before') || this;
             this.style.setProperty('--before-left', '0');
             this.style.setProperty('--before-opacity', '0.95');
-            
-            // Color change animation
-            setTimeout(() => {
-                this.style.color = '#ffffff';
-                const h3 = this.querySelector('h3');
-                const p = this.querySelector('p');
-                const link = this.querySelector('.service-link');
-                const icon = this.querySelector('.service-icon');
-                
-                if (h3) h3.style.color = '#ffffff';
-                if (p) p.style.color = '#ffffff';
-                if (link) link.style.color = '#bd9c60';
-                if (icon) {
-                    icon.style.background = '#bd9c60';
-                    icon.style.transform = 'scale(1.1)';
-                }
-            }, 100);
             
             // Radial gradient effect
             this.style.setProperty('--after-width', '300px');
             this.style.setProperty('--after-height', '300px');
+            
+            // Change icon background and scale
+            const icon = this.querySelector('.service-icon');
+            if (icon) {
+                icon.style.background = '#bd9c60';
+                icon.style.transform = 'scale(1.1)';
+            }
         });
         
         card.addEventListener('mouseleave', function() {
             // Reset animations
             this.style.transform = 'translateY(0) scale(1)';
             this.style.boxShadow = '0 4px 20px rgba(70, 44, 138, 0.1)';
-            this.style.color = '';
-            
-            const h3 = this.querySelector('h3');
-            const p = this.querySelector('p');
-            const link = this.querySelector('.service-link');
-            const icon = this.querySelector('.service-icon');
-            
-            if (h3) h3.style.color = '';
-            if (p) p.style.color = '';
-            if (link) link.style.color = '';
-            if (icon) {
-                icon.style.background = '';
-                icon.style.transform = '';
-            }
             
             // Reset pseudo-element effects
             this.style.setProperty('--before-left', '-100%');
             this.style.setProperty('--before-opacity', '0');
             this.style.setProperty('--after-width', '0');
             this.style.setProperty('--after-height', '0');
+            
+            // Reset icon
+            const icon = this.querySelector('.service-icon');
+            if (icon) {
+                icon.style.background = '';
+                icon.style.transform = '';
+            }
         });
     });
 }
